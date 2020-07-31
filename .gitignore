@@ -62,3 +62,4 @@ typings/
 *.sqlite
 /package-lock.json
 /project/package-lock.json
+/.idea/
