@@ -9,7 +9,8 @@
   "private": true,
   "scripts": {
     "debug": "cross-env DEBUG=nadia:* nodemon",
-    "start": "node bin/www"
+    "start": "node bin/www",
+    "nonprod": "npm config set -g production false"
   },
   "dependencies": {
     "basic-auth": "^1.1.0",
