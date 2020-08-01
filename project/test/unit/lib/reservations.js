@@ -3,9 +3,9 @@ const sinon = require('sinon');
 const chai = require('chai');
 const should = chai.should();
 const sinonChai = require('sinon-chai');
-chai.use(sinonChai);
 const Reservation = require('../../../lib/schema/reservation');
 const db = require('sqlite');
+chai.use(sinonChai);
 
 describe('Reservations Library', function() {
   const debugStub = function() {
@@ -112,6 +112,41 @@ describe('Reservations Library', function() {
           done();
         })
         .catch(error => done(error));
+    });
+  });
+
+  context('Save', function() {
+    let dbMock;
+
+    before(function() {
+      dbMock = sinon.mock(db);
+    });
+
+    after(function() {
+      dbMock.restore();
+    });
+
+    it('should only call the database once', function() {
+      dbMock.expects('run')
+        .once();
+
+      reservations = proxyquire('../../../lib/reservations', {
+        debug: debugStub,
+        sqlite: dbMock
+      });
+
+      const reservation = {
+        datetime: '2017-06-10T06:02:00.000Z',
+        party: 4,
+        name: 'Family',
+        email: 'username@example.com',
+        message: undefined,
+        phone: undefined
+      };
+
+      reservations.save(reservation);
+
+      dbMock.verify();
     });
   });
 });
