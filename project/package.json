@@ -12,7 +12,7 @@
     "start": "node bin/www",
     "eslint": "eslint",
     "nonprod": "npm config set -g production false",
-    "test": "mocha"
+    "test": "mocha -- --recursive"
   },
   "dependencies": {
     "basic-auth": "^1.1.0",
