@@ -12,7 +12,7 @@
     "start": "node bin/www",
     "eslint": "eslint",
     "nonprod": "npm config set -g production false",
-    "test": "mocha -- --recursive"
+    "test": "cross-env DEBUG=nadia:* mocha -- --recursive"
   },
   "dependencies": {
     "basic-auth": "^1.1.0",
@@ -36,6 +36,7 @@
     "chai": "^4.2.0",
     "cross-env": "^5.0.1",
     "mocha": "^8.1.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "proxyquire": "^2.1.3"
   }
 }
